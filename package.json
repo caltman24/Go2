@@ -1,0 +1,73 @@
+{
+  "name": "go2",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "oclif example Hello World CLI",
+  "author": "Corbyn @caltman24",
+  "bin": {
+    "Go2": "./bin/run"
+  },
+  "homepage": "https://github.com/caltman24/hello-world",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": "caltman24/hello-world",
+  "files": [
+    "/bin",
+    "/dist",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "dependencies": {
+    "@oclif/core": "^2",
+    "@oclif/plugin-help": "^5",
+    "@oclif/plugin-plugins": "^2.3.2",
+    "@types/sqlite3": "^3.1.8",
+    "clipboardy": "^3.0.0",
+    "sqlite3": "^5.1.4",
+    "upath": "^2.0.1"
+  },
+  "devDependencies": {
+    "@oclif/test": "^2.3.6",
+    "@types/chai": "^4",
+    "@types/node": "^16.18.12",
+    "chai": "^4",
+    "eslint": "^7.32.0",
+    "eslint-config-oclif": "^4",
+    "eslint-config-oclif-typescript": "^1.0.3",
+    "oclif": "^3",
+    "shx": "^0.3.3",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.5.0",
+    "typescript": "^4.9.5"
+  },
+  "oclif": {
+    "bin": "go2",
+    "dirname": "go2",
+    "commands": "./dist/commands",
+    "plugins": [
+      "@oclif/plugin-help",
+      "@oclif/plugin-plugins"
+    ],
+    "topicSeparator": " ",
+    "topics": {
+      "hello": {
+        "description": "Say hello to the world and others"
+      }
+    }
+  },
+  "scripts": {
+    "build": "shx rm -rf dist && tsc -b && npm run copydb",
+    "postpack": "shx rm -f oclif.manifest.json",
+    "prepack": "yarn build && oclif manifest && oclif readme",
+    "version": "oclif readme && git add README.md",
+    "copydb": "cp -r ./src/db ./dist/db"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "bugs": "https://github.com/caltman24/hello-world/issues",
+  "keywords": [
+    "oclif"
+  ],
+  "types": "dist/index.d.ts"
+}
